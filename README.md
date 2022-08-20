@@ -18,7 +18,7 @@ Use [Poetry](https://github.com/python-poetry/poetry) to install dependencies wi
 
 ## Quick start
 
-The first thing you should do is decide on a leader key with which to summon the modal. PyWinModal uses the [keyboard](https://pypi.org/project/keyboard/) library for monitoring key presses, so any key press valid for the keyboard library should work. The format is pretty simple: `"esc"`, `"tab"`, "`ctrl+f4`", etc. Function keys from F13 to F24 are supported as well.
+The first thing you should do is decide on a leader key with which to summon the modal. PyWinModal uses the [keyboard](https://pypi.org/project/keyboard/) library for monitoring key presses, so any key press valid for the keyboard library should work. The format is pretty simple: `esc`, `tab`, `ctrl+f4`, etc. Function keys from F13 to F24 are supported as well.
 
 After doing that, you can configure and run the modal in the following manner:
 
