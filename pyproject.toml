@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "PyWinModal"
+version = "0.1.0"
+description = ""
+authors = ["James Fitzgerald <kaphix@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+pywinauto = "^0.6.8"
+keyboard = "^0.13.5"
+PySimpleGUI = "^4.60.3"
+psgtray = "^1.0.2"
+pywin32 = "^304"
+psutil = "^5.9.1"
+mypy = "^0.971"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+flake8 = "^5.0.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+app = "PyWinModal.main:main"
