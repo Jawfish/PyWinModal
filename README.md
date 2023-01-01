@@ -10,7 +10,7 @@
 
 PyWinModal is an application inspired by [Spacemacs](https://www.spacemacs.org/) and [vim-which-key](https://github.com/liuchengxu/vim-which-key)/[which-key.nvim](https://github.com/folke/which-key.nvim) that allows you to bind a leader key to bring up a modal for issuing commands to Windows. For example, if you bind your leader key to Caps Lock, you could press Caps>S>G to **S**earch **G**oogle, or Caps>G>B to **G**o to the **B**rowser. The modal is customizable with a simple API and can be easily extended to execute user-defined commands.
 
-![Example modal](Images/2022-08-20-19-14-50.png)
+![Example modal](Images/Example.png)
 
 ## Installation
 
