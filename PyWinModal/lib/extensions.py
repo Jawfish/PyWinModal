@@ -123,6 +123,7 @@ class Utils:
 
     @staticmethod
     def raise_window(hwnd: int) -> None:
+        """Brings the window with the given handle to the foreground."""
         title = win32gui.GetWindowText(hwnd)  # type: ignore
         # if window is minimized, restore it
         if win32gui.IsIconic(hwnd):  # type: ignore
@@ -136,18 +137,22 @@ class Utils:
 
 
 def close_active_window() -> Callable:
+    """Closes the foreground window."""
     return lambda: win32gui.PostMessage(Utils.get_active_window(), win32con.WM_CLOSE, 0, 0)  # type: ignore
 
 
 def activate_last_window() -> Callable:
+    """Brings the last active window to the foreground."""
     return lambda: win32gui.SetForegroundWindow(Utils.get_window_at_index(1))  # type: ignore
 
 
 def open_application(application: str) -> Callable:
+    """Launches the given application."""
     return lambda: Application().start(application)
 
 
 def summon_or_launch(application: str) -> Callable:
+    """Brings the given application to the foreground or launches it if it is not running."""
     def action() -> None:
         # extract just the executable from the path
         executable: str = application.split("\\")[-1]
@@ -165,6 +170,7 @@ def summon_or_launch(application: str) -> Callable:
 
 
 def go_to_window_by_title(title: str) -> Callable:
+    """Brings the window with the given title to the foreground."""
     def action() -> None:
         try:
             window = Utils.get_window_from_partial_title(title)
@@ -177,6 +183,7 @@ def go_to_window_by_title(title: str) -> Callable:
 
 
 def go_to_window_by_exe(exe: str) -> Callable:
+    """Brings the window with the given executable to the foreground."""
     def action() -> None:
         try:
             window = Utils.get_window_from_exe(exe)
@@ -189,6 +196,7 @@ def go_to_window_by_exe(exe: str) -> Callable:
 
 
 def send_keys_to_active_window(keys: str) -> Callable:
+    """Sends the given keys to the foreground window."""
     def action() -> None:
         print(f"sending {keys} to {win32gui.GetWindowText(win32gui.GetForegroundWindow())}")  # type: ignore
         keyboard.press_and_release(keys)
@@ -197,6 +205,7 @@ def send_keys_to_active_window(keys: str) -> Callable:
 
 
 def send_keys_to_window_by_title(title: str, keys: str) -> Callable:
+    """Sends the given keys to the window with the given title."""
     def action() -> None:
         win32gui.SetForegroundWindow(Utils.get_window_from_partial_title(title))  # type: ignore
         keyboard.press_and_release(keys)
@@ -216,6 +225,7 @@ def search_web(title: str, url: str) -> Callable:
 
 
 def toggle_dark_mode() -> Callable:
+    """Toggles the Windows 10 and Windows 11 dark mode."""
     def action() -> None:
         key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", 0, winreg.KEY_ALL_ACCESS)  # type: ignore
         value = winreg.QueryValueEx(key, "SystemUsesLightTheme")[0]  # type: ignore
@@ -230,6 +240,7 @@ def toggle_dark_mode() -> Callable:
 
 
 def lock_workstation() -> Callable:
+    """Locks the workstation. Equivalent to pressing Win+L."""
     def action() -> None:
         ctypes.windll.user32.LockWorkStation()
 
@@ -237,6 +248,7 @@ def lock_workstation() -> Callable:
 
 
 def empty_clipboard() -> Callable:
+    """Empties the clipboard."""
     def action() -> None:
         win32clipboard.OpenClipboard()
         win32clipboard.EmptyClipboard()
@@ -246,6 +258,7 @@ def empty_clipboard() -> Callable:
 
 
 def minimize_active_window() -> Callable:
+    """Minimizes the foreground window."""
     def action() -> None:
         win32gui.ShowWindow(win32gui.GetForegroundWindow(), win32con.SW_MINIMIZE)  # type: ignore
 
@@ -253,6 +266,7 @@ def minimize_active_window() -> Callable:
 
 
 def maximize_active_window() -> Callable:
+    """Maximizes the foreground window."""
     def action() -> None:
         win32gui.ShowWindow(win32gui.GetForegroundWindow(), win32con.SW_MAXIMIZE)  # type: ignore
 
